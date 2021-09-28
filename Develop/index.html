@@ -18,17 +18,17 @@
     <header class="jumbotron">
         <h1 class="display-3">Work Day Scheduler</h1>
         <p class="lead">A simple calendar app for scheduling your work day</p>
-        <p id="currentDay" class="lead"></p>
+        <p id="currentDay" class="lead">Today is: <span></span> </p>
 
     </header>
     <div class="container">
         <!-- Timeblocks go here -->
         <div class="row">
             <div class="col-3">
-                <p class="hour">9:00am</p>
+                <p class="hour" data-hour="9:00:00">9:00am</p>
             </div>
 
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input id="9amtext" class="textBox" type="text"></div>
 
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
@@ -36,56 +36,56 @@
             <div class="col-3">
                 <p class="hour">10:00am</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">11:00am</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">12:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">1:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">2:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">3:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">4:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
         <div class="row">
             <div class="col-3">
                 <p class="hour">5:00pm</p>
             </div>
-            <div class="col-8"><input type="text"></div>
+            <div class="col-8"><input class="textBox" type="text"></div>
             <div class="col-1"><button class="saveBtn"><i class="fa fa-save"></i></button></div>
         </div>
     </div>
@@ -93,6 +93,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script source src="./js/script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script>
+        var now = moment();
+        console.log(now.format("MMMM DD, YYYY"));
+        $("span").text(now.format("MMMM DD, YYYY, h:mm:ss"));
+
+        //iterate over all the divs that have a time block(row) 
+        //for each hour
+        var fakeTime = "day time year 09:00:00";
+        var timeObj = moment(fakeTime);
+        //compare this moment object to now moment
+        //data attribute that equals hour number 
+
+        //figure out if this row is past, present or future
+        //apply correct class
+        //iterate over all of the rows
+        //j query update time class styling
+    </script>
 </body>
 
 </html>
