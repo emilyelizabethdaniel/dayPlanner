@@ -1,7 +1,8 @@
 //local storage
 
-var saveBtn = $("[class=saveBtn");
+var saveBtn = $("[class=saveBtn]");
 var allNotes = [];
+var input = $("input");
 
 saveBtn.on('click', function() {
     console.log($(this));
@@ -13,20 +14,14 @@ saveBtn.on('click', function() {
 
         //json stringify, json parse
 
-        var arrayToStringNotes = JSON.stringify(allNotes);
-        localStorage.setItem("user notes", arrayToStringNotes);
-        console.log(arrayToStringNotes);
+        localStorage.setItem("user notes", JSON.stringify(allNotes));
+        var getNotes = JSON.parse(localStorage.getItem("user notes"));
 
+        // add to text boxes
 
-        // var plannerText = localStorage.getItem("all user notes");
-        // var plannerDisplayText = JSON.parse(plannerText);
-        // $
+        $(".textBox").append(getNotes);
 
-        // var savedText = localStorage.getItem(allNotes);
-        //$(.textBox).append(savedText);
     })
-
-    console.log("clicked");
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,17 +30,48 @@ saveBtn.on('click', function() {
 
 
 var now = moment();
-console.log(now.format("MMMM DD, YYYY"));
-$("span").text(now.format("MMMM DD, YYYY, h:mm:ss"));
+var currentHour = moment().startOf('day');
+var updateCurrentHour = 13;
+console.log(currentHour);
+$("span").text(now.format("MMMM DD, YYYY, hh:mm "));
+currentHour = moment(currentHour).add(updateCurrentHour, 'h');
+console.log(currentHour);
 
-//iterate over all the divs that have a time block(row) 
-//for each hour
-var fakeTime = "day time year 09:00:00";
-var timeObj = moment(fakeTime);
+
+function compareTimes() {
+    if (moment(now).isAfter(currentHour)) {
+        console.log("after!");
+        input.addClass("future");
+
+    } else if (moment(now).isBefore(currentHour)) {
+        console.log("before!");
+        input.addClass("past");
+    } else if (moment(now).isSame(currentHour)) {
+        input.addClass("present")
+        console.log("same!");
+    }
+    // updateHour();
+    // console.log(updateCurrentHour)
+};
+
+function updateHour() {
+    updateCurrentHour = updateCurrentHour + 1;
+    console.log(updateCurrentHour);
+};
+
+compareTimes();
+updateHour();
+
+
+// var timeObj = moment(fakeTime);
+// console.log(fakeTime);
+
 //compare this moment object to now moment
 //data attribute that equals hour number 
 
 //figure out if this row is past, present or future
+
+
 //apply correct class
 //iterate over all of the rows
 //j query update time class styling
