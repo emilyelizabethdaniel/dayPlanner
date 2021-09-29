@@ -1,37 +1,33 @@
 //local storage
 
 var saveBtn = $("[class=saveBtn]");
-var allNotes = ["", "", "", "", "", "", "", "", "", ];
-var nine = $("#nine");
-var ten = $("#ten");
-var eleven = $("#eleven");
-var twelve = $("#twelve");
-var one = $("#one");
-var two = $("#two");
-var three = $("#three");
-var four = $("#four");
-var five = $("#five");
-
 
 saveBtn.on('click', function() {
     console.log($(this));
+    var allNotes = [];
 
     $(".textBox").each(function() {
         console.log($(this).val());
         allNotes.push($(this).val());
         console.log(allNotes);
-
-        //json stringify, json parse
-
         localStorage.setItem("user notes", JSON.stringify(allNotes));
-        var getNotes = JSON.parse(localStorage.getItem("user notes"));
-
-        // add to text boxes
-
-        $(".textBox").append(getNotes);
-
     })
 });
+
+function getStorageNotes() {
+    var getNotes = JSON.parse(localStorage.getItem("user notes"));
+    var iterateEachBox = 0;
+    console.log(getNotes);
+    $(".textBox").each(function() {
+
+        $(this).val(getNotes[iterateEachBox]);
+
+        iterateEachBox++;
+
+    });
+};
+
+getStorageNotes();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
